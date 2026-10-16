@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 8.1.2">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.min.css" integrity="sha256-4Lad8m4ZWW1Lgb9+sMVLYEfnIh7BjV1NQMEe79Pviks=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"swik-boit.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":true,"version":"8.29.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="计算机网络 - 物理层物理层主要负责比特流的传输，了解信号、各类传输介质。 一、信号的概念信息是传递的内容，数据承载信息，信号是数据物理传输的表现形式。 信号分为两种：  模拟信号：连续变化波形信号 数字信号：离散脉冲方波信号   信号传输失真信号在传输过程会出现失真，主要两个原因：  噪声：外界电磁干扰 衰减：信号随距离增大强度降低  信号传播途径 有线：网线、光纤 无线：基站（WiFi、手机流">
+<meta property="og:type" content="article">
+<meta property="og:title" content="计算机网络｜物理层知识点整理">
+<meta property="og:url" content="https://swik-boit.github.io/2026/10/16/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/index.html">
+<meta property="og:site_name" content="欢迎访问我的博客">
+<meta property="og:description" content="计算机网络 - 物理层物理层主要负责比特流的传输，了解信号、各类传输介质。 一、信号的概念信息是传递的内容，数据承载信息，信号是数据物理传输的表现形式。 信号分为两种：  模拟信号：连续变化波形信号 数字信号：离散脉冲方波信号   信号传输失真信号在传输过程会出现失真，主要两个原因：  噪声：外界电磁干扰 衰减：信号随距离增大强度降低  信号传播途径 有线：网线、光纤 无线：基站（WiFi、手机流">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://swik-boit.github.io/%E7%89%A9%E7%90%86%E5%B1%82%E7%9F%A5%E8%AF%86%E7%82%B9/%E4%BF%A1%E5%8F%B7%E6%A6%82%E8%BF%B0.png">
+<meta property="og:image" content="https://swik-boit.github.io/%E7%89%A9%E7%90%86%E5%B1%82%E7%9F%A5%E8%AF%86%E7%82%B9/%E5%8F%8C%E7%BB%9E%E7%BA%BF.png">
+<meta property="og:image" content="https://swik-boit.github.io/%E7%89%A9%E7%90%86%E5%B1%82%E7%9F%A5%E8%AF%86%E7%82%B9/%E5%85%89%E7%BA%A4%E6%A6%82%E8%BF%B0.png">
+<meta property="og:image" content="https://swik-boit.github.io/%E7%89%A9%E7%90%86%E5%B1%82%E7%9F%A5%E8%AF%86%E7%82%B9/%E5%85%89%E7%BA%A4%E5%88%86%E7%B1%BB.png">
+<meta property="article:published_time" content="2026-10-16T02:30:00.000Z">
+<meta property="article:modified_time" content="2026-10-16T07:37:22.495Z">
+<meta property="article:author" content="Lb">
+<meta property="article:tag" content="物理层">
+<meta property="article:tag" content="网络基础">
+<meta property="article:tag" content="计算机网络">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://swik-boit.github.io/%E7%89%A9%E7%90%86%E5%B1%82%E7%9F%A5%E8%AF%86%E7%82%B9/%E4%BF%A1%E5%8F%B7%E6%A6%82%E8%BF%B0.png">
+
+
+<link rel="canonical" href="https://swik-boit.github.io/2026/10/16/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://swik-boit.github.io/2026/10/16/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/","path":"2026/10/16/我的第一篇博客/","title":"计算机网络｜物理层知识点整理"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>计算机网络｜物理层知识点整理 | 欢迎访问我的博客</title>
+  
+
+
+
+
+
+
+
+
+  
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-search popup-trigger" aria-label="搜索" role="button">
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">欢迎访问我的博客</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">学习记录，分享知识</p>
+  </div>
+
+  <div class="site-nav-toggle" aria-label="切换导航栏" role="button">
+  </div>
+</div>
+
+
+
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-%E7%89%A9%E7%90%86%E5%B1%82"><span class="nav-number">1.</span> <span class="nav-text">计算机网络 - 物理层</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E4%BF%A1%E5%8F%B7%E7%9A%84%E6%A6%82%E5%BF%B5"><span class="nav-number">1.1.</span> <span class="nav-text">一、信号的概念</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BF%A1%E5%8F%B7%E4%BC%A0%E8%BE%93%E5%A4%B1%E7%9C%9F"><span class="nav-number">1.1.1.</span> <span class="nav-text">信号传输失真</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BF%A1%E5%8F%B7%E4%BC%A0%E6%92%AD%E9%80%94%E5%BE%84"><span class="nav-number">1.1.2.</span> <span class="nav-text">信号传播途径</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E5%8F%8C%E7%BB%9E%E7%BA%BF%EF%BC%88%E7%BD%91%E7%BA%BF%EF%BC%89"><span class="nav-number">1.2.</span> <span class="nav-text">二、双绞线（网线）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%8C%E7%BB%9E%E7%BA%BF%E5%88%86%E7%B1%BB"><span class="nav-number">1.2.1.</span> <span class="nav-text">双绞线分类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BD%91%E7%BA%BF%E7%BA%BF%E5%BA%8F"><span class="nav-number">1.2.2.</span> <span class="nav-text">网线线序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BD%91%E7%BA%BF%E4%B8%89%E7%A7%8D%E7%B1%BB%E5%9E%8B"><span class="nav-number">1.2.3.</span> <span class="nav-text">网线三种类型</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E5%85%89%E7%BA%A4"><span class="nav-number">1.3.</span> <span class="nav-text">三、光纤</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%89%E7%BA%A4%E5%88%86%E7%B1%BB"><span class="nav-number">1.3.1.</span> <span class="nav-text">光纤分类</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Lb</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">3</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://swik-boit.github.io/2026/10/16/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Lb">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="欢迎访问我的博客">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="计算机网络｜物理层知识点整理 | 欢迎访问我的博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          计算机网络｜物理层知识点整理
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2026-10-16 10:30:00 / 修改时间：15:37:22" itemprop="dateCreated datePublished" datetime="2026-10-16T10:30:00+08:00">2026-10-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%BD%91%E7%BB%9C%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">网络学习</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="计算机网络-物理层"><a href="#计算机网络-物理层" class="headerlink" title="计算机网络 - 物理层"></a>计算机网络 - 物理层</h1><p>物理层主要负责比特流的传输，了解信号、各类传输介质。</p>
+<h2 id="一、信号的概念"><a href="#一、信号的概念" class="headerlink" title="一、信号的概念"></a>一、信号的概念</h2><p>信息是传递的内容，数据承载信息，<strong>信号是数据物理传输的表现形式</strong>。</p>
+<p>信号分为两种：</p>
+<ol>
+<li><strong>模拟信号</strong>：连续变化波形信号</li>
+<li><strong>数字信号</strong>：离散脉冲方波信号</li>
+</ol>
+<p><img src="/./%E7%89%A9%E7%90%86%E5%B1%82%E7%9F%A5%E8%AF%86%E7%82%B9/%E4%BF%A1%E5%8F%B7%E6%A6%82%E8%BF%B0.png" alt="信号概述"></p>
+<h3 id="信号传输失真"><a href="#信号传输失真" class="headerlink" title="信号传输失真"></a>信号传输失真</h3><p>信号在传输过程会出现失真，主要两个原因：</p>
+<ol>
+<li><strong>噪声</strong>：外界电磁干扰</li>
+<li><strong>衰减</strong>：信号随距离增大强度降低</li>
+</ol>
+<h3 id="信号传播途径"><a href="#信号传播途径" class="headerlink" title="信号传播途径"></a>信号传播途径</h3><ul>
+<li>有线：网线、光纤</li>
+<li>无线：基站（WiFi、手机流量）</li>
+</ul>
+<h2 id="二、双绞线（网线）"><a href="#二、双绞线（网线）" class="headerlink" title="二、双绞线（网线）"></a>二、双绞线（网线）</h2><p>双绞线一共8根导线，两两绞合。常见规格：5类、超5类、6类。</p>
+<p><img src="/./%E7%89%A9%E7%90%86%E5%B1%82%E7%9F%A5%E8%AF%86%E7%82%B9/%E5%8F%8C%E7%BB%9E%E7%BA%BF.png" alt="双绞线"></p>
+<h3 id="双绞线分类"><a href="#双绞线分类" class="headerlink" title="双绞线分类"></a>双绞线分类</h3><ol>
+<li><strong>屏蔽双绞线</strong><br>铜线外层包裹金属屏蔽网，适合电磁干扰复杂的工业环境。</li>
+<li><strong>非屏蔽双绞线</strong><br>普通环境使用，抗干扰能力较弱。</li>
+</ol>
+<h3 id="网线线序"><a href="#网线线序" class="headerlink" title="网线线序"></a>网线线序</h3><p>交叉网线完整线序：<br><code>1.白橙 2.橙 3.白绿 4.蓝 5.白蓝 6.绿 7.白棕 8.棕</code></p>
+<h3 id="网线三种类型"><a href="#网线三种类型" class="headerlink" title="网线三种类型"></a>网线三种类型</h3><ol>
+<li><strong>直通线</strong>：连接不同类型设备，电脑连交换机、路由器连交换机。</li>
+<li><strong>交叉线</strong>：用于同类设备互相连接。</li>
+<li><strong>全反线</strong>：不用于以太网，专门连接设备Console管理口。</li>
+</ol>
+<h2 id="三、光纤"><a href="#三、光纤" class="headerlink" title="三、光纤"></a>三、光纤</h2><p>光纤依靠<strong>光的全反射原理</strong>传输光脉冲信号。</p>
+<p><img src="/./%E7%89%A9%E7%90%86%E5%B1%82%E7%9F%A5%E8%AF%86%E7%82%B9/%E5%85%89%E7%BA%A4%E6%A6%82%E8%BF%B0.png" alt="光纤概述"></p>
+<p>✅ 光纤优点：</p>
+<ul>
+<li>传输带宽高</li>
+<li>传输距离远</li>
+<li>抗干扰能力强</li>
+</ul>
+<p>❌ 光纤缺点：</p>
+<ul>
+<li>物理材质容易损坏</li>
+<li>故障修复代价大</li>
+</ul>
+<h3 id="光纤分类"><a href="#光纤分类" class="headerlink" title="光纤分类"></a>光纤分类</h3><p><img src="/./%E7%89%A9%E7%90%86%E5%B1%82%E7%9F%A5%E8%AF%86%E7%82%B9/%E5%85%89%E7%BA%A4%E5%88%86%E7%B1%BB.png" alt="光纤分类"></p>
+<ol>
+<li><p><strong>单模光纤</strong><br>外皮默认黄色，特殊版本黑色；速率10G&#x2F;S，最大传输距离300KM。</p>
+</li>
+<li><p><strong>多模光纤</strong><br>外皮默认橙色，特殊版本黑色；速率40G&#x2F;S，最大传输距离300KM。</p>
+</li>
+<li><p><strong>无线光纤</strong><br>无线光传输，最远传输50KM。</p>
+</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" rel="tag"># 计算机网络</a>
+              <a href="/tags/%E7%89%A9%E7%90%86%E5%B1%82/" rel="tag"># 物理层</a>
+              <a href="/tags/%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/" rel="tag"># 网络基础</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2026/10/13/hello-world/" rel="prev" title="Hello World">
+                  <i class="fa fa-angle-left"></i> Hello World
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2026/10/16/%E7%AC%AC%E4%B8%80%E7%AF%87/" rel="next" title="第一篇">
+                  第一篇 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Lb</span>
+  </div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>
